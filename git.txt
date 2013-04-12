@@ -1,0 +1,57 @@
+git的使用
+
+//本地初始化git库
+cd到项目主文件夹下
+git init  //初始化git库
+touch readme.md  //新建一个readme的文件,以便git识别
+git add readme.md  //把readme.md文件添加到本地库
+git commit -m "first commit"  //提交add的文件到本地库,添加注释 "first commit"
+
+//在github上新建一个资源库(文件夹)test
+获得远程库连接 git@github.com:fengerhao/test.git
+
+//本地操作
+git remote add origin git@github.com:fengerhao/test.git  //关联远程资源库
+git push -u origin master  //把已经提交到本地库的文件推送到远端库
+
+
+git日常操作
+git add
+Git rm
+git status
+git commit
+git pull
+git push
+git log
+git merge
+Git diff
+git branch –r 列出远程分支
+
+
+Git创建Develop分支：
+git checkout -b develop master
+
+将Develop分支发布到Master分支：
+    # 切换到Master分支
+　　git checkout master
+　　# 对Develop分支进行合并
+　　git merge --no-ff develop
+Git执行"快进式合并"（fast-farward merge），会直接将Master分支指向Develop分支。使用--no-ff参数后，会执行正常合并，在Master分支上生成一个新节点。
+
+
+创建一个功能分支：
+　　git checkout -b feature-x develop
+开发完成后，将功能分支合并到develop分支：
+　　git checkout develop
+　　git merge --no-ff feature-x
+删除feature分支：
+　　git branch -d feature-x
+
+对合并生成的新节点，做一个标签
+　　git tag -a 1.2
+
+临时性分支:
+    * 功能（feature）分支
+　　* 预发布（release）分支
+　　* 修补bug（fixbug）分支
+使用完以后，应该删除，使得代码库的常设分支始终只有Master和Develop。
